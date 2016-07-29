@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+        <h:head>
+            <title>#{m.prijava_naslov}</title>
+        </h:head>
+        <h:body>
+            <h:form>
+                <h:commandLink value="#{m.index_odabir_jezika}" action="#{prijava.odabirJezika}"/>
+            </h:form><br/>
+
+            <h:form id="logInForma">
+                #{m.prijava_login}<br/>
+                <h:outputLabel value="#{m.prijava_user}: "/>
+                <h:inputText value="#{prijava.logInUsername}" />
+                <br/>
+                <h:outputLabel value="#{m.prijava_lozinka}: " />
+                <h:inputSecret value="#{prijava.logInPassword}" />
+                <br/>
+                <h:commandButton value="#{m.prijava_button_logIn}" action="#{prijava.prijavaKorisnika}" /><br/>
+                <h:outputText value="#{m.prijava_nepostojeciKorisnik}" rendered="#{prijava.logInUserDoesNotExist}" />
+                <h:outputText value="#{m.prijava_nevaljataLozinka}" rendered="#{prijava.logInWrongPassword}" />
+                <h:outputText value="#{m.prijava_neprovjeren}" rendered="#{prijava.logInInactive}" />    
+                <h:outputText value="#{m.prijava_odbijen}" rendered="#{prijava.logInRejected}" />    
+            </h:form><br/>
+
+            <h:form id="registerForma">
+                #{m.prijava_register}<br/>
+                <h:outputLabel value="#{m.prijava_user}: "/>
+                <h:inputText value="#{prijava.registerUsername}" />
+                <br/>
+                <h:outputLabel value="#{m.prijava_lozinka}: " />
+                <h:inputSecret value="#{prijava.registerPassword}"/>
+                <br/>
+                <h:outputLabel value="#{m.prijava_lozinkaRepeat}: " />
+                <h:inputSecret value="#{prijava.registerPasswordRepeat}"/>
+                <br/>
+                <h:outputLabel value="#{m.prijava_ime}: " />
+                <h:inputText value="#{prijava.registerIme}"/>
+                <br/>
+                <h:outputLabel value="#{m.prijava_prezime}: " />
+                <h:inputText value="#{prijava.registerPrezime}"/>
+                <br/>
+                <h:outputLabel value="#{m.prijava_mail}: " />
+                <h:inputText value="#{prijava.registerEmail}"/>
+                <br/>
+                #{m.prijava_vrstaKorisnika}:
+                <h:selectOneRadio value="#{prijava.registerVrsta}">
+                    <f:selectItem itemValue="1" itemLabel="#{m.prijava_vrstaObicni}" />
+                    <f:selectItem itemValue="2" itemLabel="#{m.prijava_vrstaAdmin}" />
+                </h:selectOneRadio>
+                <h:commandButton value="#{m.prijava_button_register}" action="#{prijava.registracijaKorisnika}"/><br/>
+                <h:outputText value="#{m.prijava_nemaKorisnika}" rendered="#{prijava.registerNoUsername}" />
+                <h:outputText value="#{m.prijava_korisnikVecPostoji}" rendered="#{prijava.registerUserAlreadyExists}" />
+                <h:outputText value="#{m.prijava_nemaLozinke}" rendered="#{prijava.registerNoPassword}" />
+                <h:outputText value="#{m.prijava_krivoPonovljenaLozinka}" rendered="#{prijava.registerPasswordRetypeError}" />
+                <h:outputText value="#{m.prijava_registrationError}" rendered="#{prijava.registerError}" />
+                <h:outputText value="#{m.prijava_nemaImena}" rendered="#{prijava.registerNemaImena}" />
+                <h:outputText value="#{m.prijava_nemaPrezimena}" rendered="#{prijava.registerNemaPrezimena}" />
+                <h:outputText value="#{m.prijava_nemaMaila}" rendered="#{prijava.registerNemaMaila}" />                
+                <h:outputText value="#{m.prijava_registracijaUspjesna}" rendered="#{prijava.registerSuccess}" />              
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+

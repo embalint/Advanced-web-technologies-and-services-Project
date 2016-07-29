@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/lugerovac/Documents/NetBeansProjects/embalint_projekt/embalint_aplikacija_1/embalint_aplikacija_1/GeoMeteoWS.wsdl" uri="src/conf/xml-resources/web-service-references/GeoMeteoWS/wsdl/GeoMeteoWS.wsdl"/>
+    <system systemId="file:/C:/Users/lugerovac/Documents/NetBeansProjects/embalint_projekt/embalint_aplikacija_1/embalint_aplikacija_1/GeoMeteoWS_schema1.xsd" uri="src/conf/xml-resources/web-service-references/GeoMeteoWS/wsdl/GeoMeteoWS_schema1.xsd"/>
+</catalog>

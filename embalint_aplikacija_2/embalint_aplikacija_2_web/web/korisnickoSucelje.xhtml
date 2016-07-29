@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+        <h:head>
+            <title>#{m.korisnik_naslov}</title>
+        </h:head>
+        <h:form>
+            <h:commandLink value="#{m.global_odabirJezika}" action="#{aplikacija.odabirJezika}"/>
+        </h:form><br/>
+
+        <h:body>
+            <h:form>
+                <h:commandButton value="#{m.mp_prikazi}" action="#{aplikacija.prikaziMeteoKontrole}" rendered="#{!aplikacija.showMeteoPrikaz}"/>
+                <h:commandButton value="#{m.mp_sakrij}" action="#{aplikacija.sakrijMeteoKontrole}" rendered="#{aplikacija.showMeteoPrikaz}"/>
+            </h:form><br/>
+
+            <h:form id="OWMpodaciSucelje" rendered="#{aplikacija.showMeteoPrikaz}">
+                <h:selectOneListbox value="#{aplikacija.adresaZaDodati}">
+                    <f:selectItems value="#{aplikacija.adrese}"/>
+                </h:selectOneListbox>
+                <h:selectOneListbox value="#{aplikacija.adresaZaUkloniti}">
+                    <f:selectItems value="#{aplikacija.odabraneAdrese}"/>
+                </h:selectOneListbox>
+                <br/>
+
+                <h:commandButton value="&#8592; &#8592;" action="#{aplikacija.ukloniSveAdrese}"/>
+                <h:commandButton value="&#8592;" action="#{aplikacija.ukloniAdresu}"/>
+                <h:commandButton value="&#8594;" action="#{aplikacija.dodajAdresu}"/>
+                <h:commandButton value="&#8594;&#8594;" action="#{aplikacija.dodajSveAdrese}"/>
+                <br/><br/>
+
+                <h:inputText value="#{aplikacija.novaAdresa}"/>
+                <h:commandButton value="#{m.korisnik_dodajNovuAdresu}" action="#{aplikacija.stvoriAdresu}"/><br/>
+                <h:commandButton value="#{m.mp_prikaziPodatke}" action="#{aplikacija.prikaziMeteoPodatke}"/>
+                <br/>
+                <h:outputText value="#{m.korisnik_adresaVecPostoji}" rendered="#{aplikacija.errorAdresaVecPostoji}"/>
+
+                <h:form id="OWMPregled" rendered="#{aplikacija.owmPrikaz}">
+                    <h:dataTable value="#{aplikacija.meteoPodaci}" var="mp" border="1">
+                        <h:column>
+                            <f:facet name="header">#{m.mp_adresa}</f:facet>
+                            <h:outputText value="#{mp.address}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_vrijeme}</f:facet>
+                            <h:outputText value="#{mp.weatherValue}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_temperatura}</f:facet>
+                            <h:outputText value="#{mp.temperatureValue}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_tlak}</f:facet>
+                            <h:outputText value="#{mp.pressureValue}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_vjetar}</f:facet>
+                            <h:outputText value="#{mp.windSpeedName}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_vlaga}</f:facet>
+                            <h:outputText value="#{mp.humidityValue}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">#{m.mp_datum}</f:facet>
+                            <h:outputText value="#{mp.lastUpdate}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form><br/>
+            </h:form><br/>
+
+            <h:form id="administriranjeKorisnika" rendered="#{aplikacija.showAdmin}">
+
+            </h:form><br/>
+
+            <h:form id="pregledDnevnika2" rendered="#{aplikacija.showAdmin}">
+                <h:commandButton value="#{m.korisnik_filtriranje}" action="#{aplikacija.filtriraj}"/>
+                <h:commandButton value="&#8592; &#8592;" action="#{aplikacija.straniciPocetak}"/>
+                <h:commandButton value="&#8592;" action="#{aplikacija.straniciLijevo}"/>
+                <h:outputText value="#{m.korisnik_stranica}: #{aplikacija.stranica}" />
+                <h:commandButton value="&#8594;" action="#{aplikacija.straniciDesno}"/>
+                <h:commandButton value="&#8594; &#8594;" action="#{aplikacija.straniciKraj}"/>
+                <h:inputText value="#{aplikacija.zadanaStranica}"/>
+                <h:commandButton value="Idi" action="#{aplikacija.idiNaStranicu}"/>
+
+                <h:dataTable value="#{aplikacija.dnevnickiZapisi}" var="dz" border="1">
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_tableHeaderKorisnik}<br/></f:facet>
+                        <f:facet name="header"><h:inputText value="#{aplikacija.filterKorisnik}"/><br/></f:facet>
+                            ${dz.korisnik}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_IP}<br/></f:facet>
+                        <f:facet name="header"><h:inputText value="#{aplikacija.filterIP}"/><br/></f:facet>
+                            ${dz.ipadresa}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_operacija}<br/></f:facet>
+                        <f:facet name="header"><h:inputText value="#{aplikacija.filterOperacija}"/><br/></f:facet>
+                            ${dz.operacija}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_rezultat}<br/></f:facet>
+                        <f:facet name="header"><h:inputText value="#{aplikacija.filterRezultat}"/><br/></f:facet>
+                            ${dz.rezultat}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_vrijeme}</f:facet>
+                            ${dz.vrijeme}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{m.korisnik_trajanje}</f:facet>
+                            ${dz.trajanje}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
+            <br/><br/>
+            <h:form rendered="#{aplikacija.showAdmin}">
+                #{m.aktivacija_naslov}<br/>
+                <h:dataTable value="#{aplikacija.neaktiviraniKorisnici}" var="nk" border="1">
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_user}</f:facet>
+                        ${nk.korIme}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_ime}</f:facet>
+                        ${nk.ime}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_prezime}</f:facet>
+                        ${nk.prezime}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_mail}</f:facet>
+                        ${nk.emailAdresa}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_vrstaKorisnika}</f:facet>
+                        <h:outputText value="#{m.prijava_vrstaObicni}" rendered="#{nk.vrsta == 1}"/>
+                        <h:outputText value="#{m.prijava_vrstaAdmin}" rendered="#{nk.vrsta == 2}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{m.prijava_kategorija}</f:facet>
+                        ${nk.kategorija}
+                    </h:column>
+                    
+                    <h:column>
+                        <h:commandButton value="#{m.aktivacija_odbij}" action="#{aplikacija.odbijKorisnika(nk)}"/>
+                        <h:commandButton value="#{m.aktivacija_odobri}" action="#{aplikacija.aktivirajKorisnika(nk)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            
+            <br/><br/>
+            <h:form rendered="#{aplikacija.showAdmin}">
+                #{m.kategorija_naslovKontrola} <br/>
+                #{m.kategorija_korime} <h:inputText value="#{aplikacija.kategorijaUsername}"/>
+                <h:commandButton value="#{m.kategorija_provjeri}" action="#{aplikacija.pronadjiKorisnika()}"/><br/>
+                
+                <h:form rendered="#{aplikacija.kategorijaAktivna}">
+                    #{aplikacija.kategorijaKorisnik.korIme} <br/>
+                    <h:commandButton value="#{m.kategorija_down}" action="#{aplikacija.categoryDown()}" disabled="#{!aplikacija.kategorijaDownActive}"/>
+                    #{aplikacija.kategorijaKorisnik.kategorija}
+                    <h:commandButton value="#{m.kategorija_up}" action="#{aplikacija.categoryUp()}" disabled="#{!aplikacija.kategorijaUpActive}"/><br/>
+                </h:form>
+                
+                <h:outputText value="#{m.kategorija_alert}" rendered="#{aplikacija.kategorijaAlert}"/>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+

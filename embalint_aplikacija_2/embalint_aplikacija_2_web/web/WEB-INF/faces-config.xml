@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>hr</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>org.foi.nwtis.embalint.web.lokalizacija.i18n</base-name>
+            <var>m</var>
+        </resource-bundle>
+    </application>    
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/prijava.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>APP</from-outcome>
+            <to-view-id>/korisnickoSucelje.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/prijava.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/korisnickoSucelje.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>JEZIK</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/korisnickoSucelje.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LOGOUT</from-outcome>
+            <to-view-id>/prijava.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>JEZIK</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

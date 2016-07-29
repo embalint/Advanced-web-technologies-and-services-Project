@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://serveri.ws.embalint.nwtis.foi.org/" xmlns:tns="http://serveri.ws.embalint.nwtis.foi.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="NMedteoZaAdresu" type="tns:NMedteoZaAdresu"/>
+
+  <xs:element name="NMedteoZaAdresuResponse" type="tns:NMedteoZaAdresuResponse"/>
+
+  <xs:element name="ZaNekiInterval" type="tns:ZaNekiInterval"/>
+
+  <xs:element name="ZaNekiIntervalResponse" type="tns:ZaNekiIntervalResponse"/>
+
+  <xs:element name="listaAdresa" type="tns:listaAdresa"/>
+
+  <xs:element name="listaAdresaResponse" type="tns:listaAdresaResponse"/>
+
+  <xs:element name="rangLista" type="tns:rangLista"/>
+
+  <xs:element name="rangListaResponse" type="tns:rangListaResponse"/>
+
+  <xs:element name="trenutniMeteoZaAdresu" type="tns:trenutniMeteoZaAdresu"/>
+
+  <xs:element name="trenutniMeteoZaAdresuResponse" type="tns:trenutniMeteoZaAdresuResponse"/>
+
+  <xs:complexType name="rangLista">
+    <xs:sequence>
+      <xs:element name="NumbeOFData" type="xs:string" minOccurs="0"/>
+      <xs:element name="user" type="xs:string" minOccurs="0"/>
+      <xs:element name="pass" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rangListaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:helpForMedeoPodaci" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="helpForMedeoPodaci">
+    <xs:sequence>
+      <xs:element name="listaSvihAdresa" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="meteoPodaci" type="tns:meteoPodaci" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="mp" type="tns:meteoPodaci" minOccurs="0"/>
+      <xs:element name="poruka" type="xs:string" minOccurs="0"/>
+      <xs:element name="rangList" type="tns:rangList" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="meteoPodaci">
+    <xs:sequence>
+      <xs:element name="cloudsName" type="xs:string" minOccurs="0"/>
+      <xs:element name="cloudsValue" type="xs:int"/>
+      <xs:element name="dateForecast" type="xs:string" minOccurs="0"/>
+      <xs:element name="humidityUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="humidityValue" type="xs:float" minOccurs="0"/>
+      <xs:element name="lastUpdate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="poruka" type="xs:string" minOccurs="0"/>
+      <xs:element name="precipitationMode" type="xs:string" minOccurs="0"/>
+      <xs:element name="precipitationUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="precipitationValue" type="xs:float" minOccurs="0"/>
+      <xs:element name="pressureUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="pressureValue" type="xs:float" minOccurs="0"/>
+      <xs:element name="sunRise" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="sunSet" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="temperatureMax" type="xs:float" minOccurs="0"/>
+      <xs:element name="temperatureMin" type="xs:float" minOccurs="0"/>
+      <xs:element name="temperatureUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="temperatureValue" type="xs:float" minOccurs="0"/>
+      <xs:element name="visibility" type="xs:string" minOccurs="0"/>
+      <xs:element name="weatherIcon" type="xs:string" minOccurs="0"/>
+      <xs:element name="weatherNumber" type="xs:int"/>
+      <xs:element name="weatherValue" type="xs:string" minOccurs="0"/>
+      <xs:element name="windDirectionCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="windDirectionName" type="xs:string" minOccurs="0"/>
+      <xs:element name="windDirectionValue" type="xs:float" minOccurs="0"/>
+      <xs:element name="windSpeedName" type="xs:string" minOccurs="0"/>
+      <xs:element name="windSpeedValue" type="xs:float" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rangList">
+    <xs:sequence>
+      <xs:element name="adresa" type="xs:string" minOccurs="0"/>
+      <xs:element name="numberMeteoData" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ZaNekiInterval">
+    <xs:sequence>
+      <xs:element name="adresa" type="xs:string" minOccurs="0"/>
+      <xs:element name="datumOD" type="xs:string" minOccurs="0"/>
+      <xs:element name="datumDO" type="xs:string" minOccurs="0"/>
+      <xs:element name="user" type="xs:string" minOccurs="0"/>
+      <xs:element name="pass" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ZaNekiIntervalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:helpForMedeoPodaci" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trenutniMeteoZaAdresu">
+    <xs:sequence>
+      <xs:element name="adresa" type="xs:string" minOccurs="0"/>
+      <xs:element name="user" type="xs:string" minOccurs="0"/>
+      <xs:element name="pass" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trenutniMeteoZaAdresuResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:helpForMedeoPodaci" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NMedteoZaAdresu">
+    <xs:sequence>
+      <xs:element name="adresa" type="xs:string" minOccurs="0"/>
+      <xs:element name="numberOfData" type="xs:string" minOccurs="0"/>
+      <xs:element name="user" type="xs:string" minOccurs="0"/>
+      <xs:element name="pass" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NMedteoZaAdresuResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:helpForMedeoPodaci" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listaAdresa">
+    <xs:sequence>
+      <xs:element name="user" type="xs:string" minOccurs="0"/>
+      <xs:element name="pass" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listaAdresaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:helpForMedeoPodaci" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
